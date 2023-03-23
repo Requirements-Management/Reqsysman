@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Reqsysman</title>
+	<style>
+		label {
+			display: block;
+			margin-bottom: 10px;
+		}
+
+		input[type="text"], textarea {
+			width: 100%;
+			padding: 10px;
+			margin-bottom: 20px;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			box-sizing: border-box;
+		}
+
+		button[type="submit"] {
+			background-color: #4CAF50;
+			color: white;
+			padding: 12px 20px;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+			font-size: 16px;
+		}
+
+		button[type="submit"]:hover {
+			background-color: #45a049;
+		}
+	</style>
+</head>
+<body>
+	<h2>Управление требованиями</h2>
+	<form method="post">
+		<label for="title">Название:</label>
+		<input type="text" id="title" name="title" required><br>
+
+		<label for="description">Описание:</label>
+		<textarea id="description" name="description" required></textarea><br>
+
+        <label for="requirements">Связь:</label>
+        <input type="text" id="requirements" name="requirements" required><br>
+
+		<button type="submit">Добавить требование</button>
+	</form>
+</body>
+</html>
