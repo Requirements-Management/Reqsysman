@@ -9,8 +9,8 @@ router.register(r'requirements', RequirementViewSet)
 
 
 urlpatterns = [
-    path('', include(router.urls)),
-    path('Reqsysman', views.Reqsysman),
-    path('Reqsysman', views.index),
-    path('github', views.github)
+    path('', views.index),
+    path('Reqsysman/', views.Reqsysman),
+    path('Reqsysman/', include(router.urls)),
+    path('github/', views.github)
 ]
