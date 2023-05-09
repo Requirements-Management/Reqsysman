@@ -1,50 +1,102 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Reqsysman</title>
-	<style>
-		label {
-			display: block;
-			margin-bottom: 10px;
-		}
+  <title>Reqsysman - Создание требования</title>
+  <style>
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+      input[type="text"], textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
 
-		input[type="text"], textarea {
-			width: 100%;
-			padding: 10px;
-			margin-bottom: 20px;
-			border: 1px solid #ccc;
-			border-radius: 4px;
-			box-sizing: border-box;
-		}
+  button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
 
-		button[type="submit"] {
-			background-color: #4CAF50;
-			color: white;
-			padding: 12px 20px;
-			border: none;
-			border-radius: 4px;
-			cursor: pointer;
-			font-size: 16px;
-		}
-
-		button[type="submit"]:hover {
-			background-color: #45a049;
-		}
-	</style>
+  button[type="submit"]:hover {
+    background-color: #45a049;
+  }
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 5px;
+    }
+</style>
 </head>
 <body>
-	<h2>Управление требованиями</h2>
-	<form method="post">
-		<label for="title">Название:</label>
-		<input type="text" id="title" name="title" required><br>
+<!--  <h2>Управление требованиями</h2>-->
+<!--  <h3>Создание требования</h3>-->
+<!--  <table>-->
+<!--    <tr>-->
+<!--      <th>Название поля</th>-->
+<!--      <th>Тип поля</th>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--    <td>ID</td>-->
+<!--      <td>CharField</td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--      <td>Описание</td>-->
+<!--      <td>TextField</td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--      <td>Тип требования</td>-->
+<!--      <td>ForeignKey</td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--      <td>Приоритет</td>-->
+<!--      <td>CharField</td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--      <td>Статус</td>-->
+<!--      <td>CharField</td>-->
+<!--    </tr>-->
+<!--    &lt;!&ndash; <tr>-->
+<!--      <td>Версия</td>-->
+<!--      <td>CharField</td>-->
+<!--    </tr> &ndash;&gt;-->
+<!--  </table>-->
+    <form method="post">
+  <label for="id">ID:</label>
+  <input type="text" id="id" name="id" required><br>
 
-		<label for="description">Описание:</label>
-		<textarea id="description" name="description" required></textarea><br>
+  <label for="description">Описание:</label>
+  <textarea id="description" name="description" required></textarea><br>
 
-        <label for="requirements">Связь:</label>
-        <input type="text" id="requirements" name="requirements" required><br>
+    <label for="type">Тип требования:</label>
+    <select id="type" name="type" required>
+      {% for requirement_type in requirement_types %}
+      <option value="{{ requirement_type.id }}">{{ requirement_type.name }}</option>
+      {% endfor %}
+    </select><br>
+  <label for="type">Тип:</label>
+  <input type="text" id="type" name="type" required><br>
 
-		<button type="submit">Добавить требование</button>
-	</form>
+  <label for="priority">Приоритет:</label>
+  <input type="text" id="priority" name="priority" required><br>
+
+  <label for="status">Статус:</label>
+  <input type="text" id="status" name="status" required><br>
+
+  <!-- <label for="version">Версия:</label>
+  <input type="text" id="version" name="version"><br> -->
+
+  <button type="submit">Добавить требование</button>
+</form>
 </body>
 </html>
