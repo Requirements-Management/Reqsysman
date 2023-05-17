@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 class RequirementType(models.Model):
@@ -22,8 +23,31 @@ class Requirement(models.Model):
         return self.id
 
 
+class RelationshipType(models.Model):
+    source_type = models.ForeignKey(RequirementType, related_name='source_type', on_delete=models.CASCADE)
+    target_type = models.ForeignKey(RequirementType, related_name='target_type', on_delete=models.CASCADE)
+    description = models.TextField()
+    
+    def __str__(self):
+        return f"{self.source_type} -> {self.target_type}"
+    
+    def get_absolute_url(self):
+        return reverse('relationship_type', kwargs={'relationship_type_id': self.pk})
 
 
+class Relationship(models.Model):
+    source = models.ForeignKey(Requirement, related_name='source_links', on_delete=models.CASCADE)
+    target = models.ForeignKey(Requirement, related_name='target_links', on_delete=models.CASCADE)
+    type = models.ForeignKey(RelationshipType, on_delete=models.CASCADE)
+    version = models.CharField(max_length=100)
+    last_hash_commit = models.CharField(max_length=300)
+
+    def get_absolute_url(self):
+        return reverse('relationship', kwargs={'relationship_id': self.pk})
+    
+    class Meta:
+        verbose_name = 'Связь'
+        verbose_name_plural = 'Связи'
 
 
 #

@@ -12,6 +12,7 @@ app_name = 'main'
 
 urlpatterns = [
     path('', views.index),
+
     path('admin/', admin.site.urls),
     #path('add/', views.add_requirement, name='add_requirement'),
     path('Reqsysman/', views.requirements_list, name='requirements_list'),
@@ -22,5 +23,8 @@ urlpatterns = [
     #path('Reqsysman/', requirements_list, name='requirements_list'),
     #path('Reqsysman/', include(router.urls)),
     path('github/', views.github),
-]
 
+    path('Reqsysman/', views.Reqsysman),
+    path('Reqsysman/', include(router.urls)),
+    path('github/', views.github)
+]
