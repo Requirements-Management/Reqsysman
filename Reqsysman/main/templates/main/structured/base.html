@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <title>{% block title %}{% endblock %}</title>
+  {% load static %}
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="{% static 'favicon.svg' %}" sizes="any" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="{% static 'index.css' %}">
+  {% block extra_head %}{% endblock %}
+</head>
+<body>
+  <header class="header">
+    <nav class="header_nav-menu">
+      <div>
+        <img src="{% static 'logo.svg' %}" alt="Reqsysman">
+      </div>
+      <ul class="header_menu-items">
+        <li>
+          <a class="header_menu-link" href="/">Главная</a>
+        </li>
+        <li>
+          <a class="header_menu-link" href="/">Требования</a>
+        </li>
+        <li>
+          <a class="header_menu-link" href="/">Связи</a>
+        </li>
+        <li>
+          <a class="header_menu-link" href="/">О нас</a>
+        </li>
+        <li>
+          <a class="header_menu-link" href="/">Контакты</a>
+        </li>
+      </ul>
+      <div class="header_auth">
+        <button class="header_sign-in-btn">Войти</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    {% block content %}
+    {% endblock %}
+  </main>
+
+  <footer>
+    <!-- nothing -->
+  </footer>
+</body>
+</html>

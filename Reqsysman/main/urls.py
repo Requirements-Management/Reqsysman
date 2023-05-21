@@ -11,17 +11,18 @@ router.register(r'requirements', RequirementViewSet)
 app_name = 'main'
 
 urlpatterns = [
-    # 1 V
-    path('', views.index),
+    path('', views.root),
+
+    
+    # path('', view.index),
     path('admin/', admin.site.urls),
-    path('Reqsysman/', views.requirements_list, name='requirements_list'),
-    path('', views.requirements_list, name='requirements_list'),
     path('github/', views.github),
 
-    # 2 I
+
+
+    # path('Reqsysman/', views.requirements_list, name='requirements_list'),
     path('Reqsysman/', views.Reqsysman),
-    path('Reqsysman/', include(router.urls)),
-    path('github/', views.github)
+    # path('Reqsysman/', include(router.urls)),
 
     # commented
     #path('add/', views.add_requirement, name='add_requirement'),
