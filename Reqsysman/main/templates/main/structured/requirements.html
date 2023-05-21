@@ -6,22 +6,25 @@
 
 {% block content %}
   <h1 class="default-h1">Требования</h1>
-  <div class="requirements_list">
-    {% for requirement in requirements %}
-      <div class="requirements_card super-shadow {{ requirement.priority }}">
-        <div class="requirements_req-id-approved">
-          <div class="requirements_req-id">{{ requirement.id }}</div>
-          {% if requirement.status == "Approved" %}
-            <img src="/static/checkmark.svg" alt="Approved" width="20">
-          {% endif %}
+  <div class="requirements_wrapper">
+    <a class="requirements_add-btn" href="/new_requirement">+</a>
+    <div class="requirements_list">
+      {% for requirement in requirements %}
+        <div class="requirements_card super-shadow {{ requirement.priority }}">
+          <div class="requirements_req-id-approved">
+            <div class="requirements_req-id">{{ requirement.id }}</div>
+            {% if requirement.status == "Approved" %}
+              <img src="/static/checkmark.svg" alt="Approved" width="20">
+            {% endif %}
+          </div>
+          <div class="requirements_req-type">{{ requirement.type }}</div>
+          <div class="requirements_req-description">{{ requirement.description }}</div>
         </div>
-        <div class="requirements_req-type">{{ requirement.type }}</div>
-        <div class="requirements_req-description">{{ requirement.description }}</div>
-      </div>
-    {% empty %}
-      <div class="requirements_no-requirements">
-        Пока нет требований.
-      </div>
-    {% endfor %}
-  </div>  
+      {% empty %}
+        <div class="requirements_no-requirements">
+          Пока нет требований.
+        </div>
+      {% endfor %}
+    </div>  
+  </div>
 {% endblock %}

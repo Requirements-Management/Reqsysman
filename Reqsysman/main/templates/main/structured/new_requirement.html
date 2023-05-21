@@ -1,0 +1,36 @@
+{% extends 'main/structured/base.html' %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="/static/new_requirement.css">
+{% endblock %}
+
+{% block content %}
+  <h1 class="default-h1">Новое требование</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    
+    <button type="submit">Добавить</button>
+  </form>
+
+  <label for="id">ID:</label>
+  <input type="text" id="id" name="id" required><br>
+
+  <label for="description">Описание:</label>
+  <textarea id="description" name="description" required></textarea><br>
+
+    <label for="type">Тип требования:</label>
+    <select id="type" name="type" required>
+      {% for requirement_type in requirement_types %}
+      <option value="{{ requirement_type.id }}">{{ requirement_type.name }}</option>
+      {% endfor %}
+    </select><br>
+  <label for="type">Тип:</label>
+  <input type="text" id="type" name="type" required><br>
+
+  <label for="priority">Приоритет:</label>
+  <input type="text" id="priority" name="priority" required><br>
+
+  <label for="status">Статус:</label>
+  <input type="text" id="status" name="status" required><br>
+{% endblock %}

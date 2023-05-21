@@ -19,6 +19,9 @@ def requirements(request):
     context = {'requirements': requirements}
     return render(request, 'main/structured/requirements.html', context)
 
+def new_requirement(request):
+    return render(request, 'main/structured/new_requirement.html')
+
 # -----------
 
 def Reqsysman(request):

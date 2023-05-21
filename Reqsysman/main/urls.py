@@ -15,6 +15,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('github/', views.github),
     path('Reqsysman/', views.requirements),
+    path('new_requirement/', views.new_requirement),
 
     # path('', view.index),
 
