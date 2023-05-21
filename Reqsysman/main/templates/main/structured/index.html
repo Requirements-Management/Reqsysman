@@ -1,0 +1,27 @@
+{% extends 'main/structured/base.html' %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="/static/index.css">
+{% endblock %}
+
+{% block content %}
+  <h1 class="default-h1">Система управления требованиями группы М22-524</h1>
+  <div class="container">
+    <div>
+      <h2>Участники группы:</h2>
+      <ul class="participants">
+        <li>Данил Белов (Доки, Руковоство)</li>
+        <li>Владислав Голенков (Фронт, Бэкенд)</li>
+        <li>Судьин Игорь (Бэкенд)</li>
+        <li>Задорожный Павел (Тест)</li>
+        <li>Сафронов Михаил (Фронт)</li>
+      </ul>
+    </div>
+    <!-- GitHub Connection Button -->
+    <button class="github-button"
+            onclick="window.location.href='https://github.com/login/oauth/authorize?client_id=Iv1.c141944317b66a8a&scope=user'">
+        <i class="fab fa-github github-logo"></i>
+        Подключиться к GitHub
+    </button>
+  </div>
+{% endblock %}

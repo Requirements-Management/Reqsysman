@@ -10,15 +10,16 @@ from django.shortcuts import render, redirect
 from .forms import *
 from django.http import HttpResponse
 
-def root(request):
+
+def index(request):
+    return render(request, 'main/structured/index.html')
+
+def requirements(request):
     requirements = Requirement.objects.all()
     context = {'requirements': requirements}
     return render(request, 'main/structured/requirements.html', context)
 
 # -----------
-
-def index(request):
-    return render(request, 'main/index.html')
 
 def Reqsysman(request):
     return render(request, 'main/Reqsysman.html')
