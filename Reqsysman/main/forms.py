@@ -15,6 +15,10 @@ class RequirementForm(forms.ModelForm):
             'status': 'Статус',
         }
 
+    def __init__(self, *args, **kwargs):
+        super(YourForm, self).__init__(*args, **kwargs)
+        self.fields['type'].empty_label = 'Не выбрано'
+
 
 # def requirement_create(request):
 #     if request.method == 'POST':
