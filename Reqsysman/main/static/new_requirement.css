@@ -10,22 +10,22 @@
   padding: 35px;
   display: flex;
   flex-direction: column;
-  gap: 25px;
 }
 
-.new-requirement_label {
+.new-requirement_form > p {
+  margin: 0 0 25px;
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-.new-requirement_label > span {
+.new-requirement_form > p > label {
   font-size: 14px;
   color: #222;
 }
 
-.new-requirement_label > textarea,
-.new-requirement_label > input {
+.new-requirement_form > p > textarea,
+.new-requirement_form > p > input {
   height: 40px;
   /* should be 16px+ because of the ios devices */
   font-size: 16px;
@@ -37,18 +37,18 @@
   transition: border .2s ease-in-out;
 }
 
-.new-requirement_label > textarea {
+.new-requirement_form > p > textarea {
   padding: 10px 17px;
   height: auto;
 }
 
-.new-requirement_label > textarea:hover,
-.new-requirement_label > input:hover {
+.new-requirement_form > p > textarea:hover,
+.new-requirement_form > p > input:hover {
   border-color: #dbdbdb;
 }
 
-.new-requirement_label > textarea:focus,
-.new-requirement_label > input:focus {
+.new-requirement_form > p > textarea:focus,
+.new-requirement_form > p > input:focus {
   border-color: #999;
 }
 
@@ -74,19 +74,14 @@
   transform: scale(1.1);
 }
 
-.my-nice-select {
-  width: 100%;
+.errorlist {
+  color: rgb(255, 93, 120);
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-select {
-  display: block !important;
-  margin: 0;
-  border: 0;
-  padding: 0;
-  height: 1px;
-  opacity: 0;
-  position: relative;
-  /* Top should be the same as the height of your */
-  /* unfocused, nice select replacement element! */
-  top: 40px;
+.nice-select:not(.open) {
+  text-overflow: ellipsis;
+  overflow: hidden;
 }

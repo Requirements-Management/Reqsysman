@@ -14,60 +14,6 @@
     <form method="post" class="new-requirement_form">
       {% csrf_token %}
       {{ form.as_p }}
-
-      <label class="new-requirement_label">
-        <span>Идентификатор</span>
-        <input type="text" name="id" required placeholder="Идентификатор">
-      </label>
-
-      <label class="new-requirement_label">
-        <span>Описание</span>
-        <textarea name="description" required placeholder="Описание"></textarea>
-      </label>
-
-      <div>
-        <!-- This label will not work for some reason -->
-        <label for="new-requirement_type-select" class="new-requirement_label">
-          <span>Тип</span>
-          <span><!-- because of the comment bellow --></span>
-        </label>
-        <!-- select should not be inside label because of -->
-        <!-- https://github.com/hernansartorio/jquery-nice-select/issues/46 -->
-        <!-- and -->
-        <!-- https://stackoverflow.com/questions/18609554/is-div-inside-label-block-correct -->
-        <select id="new-requirement_type-select" class="my-nice-select"
-          name="type" required>
-          {% for requirement_type in requirement_types %}
-            <option value="{{ requirement_type.id }}">{{ requirement_type.name }}</option>
-          {% endfor %}
-        </select>
-      </div>
-
-      <div>
-        <label for="new-requirement_priority-select" class="new-requirement_label">
-          <span>Приоритет</span>
-          <span></span>
-        </label>
-        <select id="new-requirement_priority-select" class="my-nice-select"
-          name="priority" required>
-          <option value="Low">Low</option>
-          <option value="Middle">Middle</option>
-          <option value="High">High</option>
-        </select>
-      </div>
-
-      <div>
-        <label for="new-requirement_status-select" class="new-requirement_label">
-          <span>Статус</span>
-          <span></span>
-        </label>
-        <select id="new-requirement_status-select" class="my-nice-select"
-          name="status" required>
-          <option value="Approved">Approved</option>
-          <option value="Not Approved">Not Approved</option>
-        </select>
-      </div>
-
       <button type="submit" class="new-requirement_add-button">Добавить</button>
     </form>
   </div>

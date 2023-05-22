@@ -7,6 +7,13 @@ class RequirementForm(forms.ModelForm):
     class Meta:
         model = Requirement
         fields = ['id', 'description', 'type', 'priority', 'status']
+        labels = {
+            'id': 'Идентификатор',
+            'description': 'Описание',
+            'type': 'Тип',
+            'priority': 'Приоритет',
+            'status': 'Статус',
+        }
 
 
 # def requirement_create(request):
