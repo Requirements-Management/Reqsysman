@@ -20,7 +20,28 @@ def requirements(request):
     return render(request, 'main/structured/requirements.html', context)
 
 def new_requirement(request):
-    return render(request, 'main/structured/new_requirement.html')
+    if request.method == 'POST':
+        form = RequirementForm(request.POST)
+        if form.is_valid():
+            requirement = form.save(commit=False)
+            requirement.save()
+            # Преобразование в JSON
+            data = {
+                'id': requirement.id,
+                'description': requirement.description,
+                'type': requirement.type,
+                'priority': requirement.priority,
+                'status': requirement.status
+            }
+            json_data = json.dumps(data, indent=4)
+            # Запись в файл
+            with open('requirements.json', 'a') as f:
+                f.write(json_data)
+                f.write('\n')
+            return HttpResponse('Требование успешно добавлено!')
+    else:
+        form = RequirementForm()
+    return render(request, 'main/structured/new_requirement.html', {'form': form})
 
 # -----------
 
