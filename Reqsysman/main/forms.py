@@ -16,7 +16,7 @@ class RequirementForm(forms.ModelForm):
         }
 
     def __init__(self, *args, **kwargs):
-        super(YourForm, self).__init__(*args, **kwargs)
+        super(RequirementForm, self).__init__(*args, **kwargs)
         self.fields['type'].empty_label = 'Не выбрано'
 
 
