@@ -53,6 +53,7 @@ class Relationship(models.Model):
     type = models.ForeignKey(RelationshipType, on_delete=models.CASCADE)
     version = models.CharField(max_length=100)
     last_hash_commit = models.CharField(max_length=300)
+    branch = models.CharField(max_length=300)
 
     def get_absolute_url(self):
         return reverse('relationship', kwargs={'relationship_id': self.pk})
