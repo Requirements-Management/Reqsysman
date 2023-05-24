@@ -1,0 +1,98 @@
+html {
+  font-family: Montserrat, sans-serif;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  border: 0;
+}
+
+button,
+input,
+textarea {
+  font-family: inherit;
+}
+
+.header {
+  border-bottom: 1px solid #ddd;
+  padding: 5px 0;
+}
+
+.header_nav-menu {
+  padding: 0 18px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header_menu-items {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 15px;
+}
+
+.header_menu-link {
+  height: 45px;
+  padding: 0 20px;
+  transition: all .2s ease-in-out;
+  color: #090909;
+  display: flex;
+  align-items: center;
+}
+
+.header_menu-link:hover {
+  background: #f4f7fc;
+  border-radius: 6px;
+}
+
+.header_sign-in-btn {
+  outline: 0;
+  border: 0;
+  border-radius: 6px;
+  height: 45px;
+  border: 1px solid #0c4df3b7;
+  background: #fff;
+  color: #090909;
+  transition: all .2s ease-in-out;
+  padding: 0 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.header_sign-in-btn:hover {
+  /* background: #0c4cf3; */
+  background: #0c4df3b7;
+  color: #fff;
+}
+
+.default-h1 {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 0 18px;
+  text-align: center;
+  color: #090909;
+  font-weight: 400;
+  font-size: 30px;
+}
+
+.super-shadow {
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}

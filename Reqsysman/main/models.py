@@ -13,11 +13,23 @@ class RequirementType(models.Model):
 class Requirement(models.Model):
     id = models.CharField(max_length=50, primary_key=True)
     description = models.TextField()
-    type = models.ForeignKey(RequirementType, on_delete=models.CASCADE)
-    #type = 'Функциональные требования'
-    priority = models.CharField(max_length=50)
-    status = models.CharField(max_length=50)
-    #version = models.CharField(max_length=100)
+    type = models.ForeignKey(RequirementType, \
+        on_delete=models.CASCADE)
+
+    priority_choices = (
+        ('Low', 'Низкий'),
+        ('Middle', 'Средний'),
+        ('High', 'Высокий'),
+    )
+    priority = models.CharField(max_length=50, \
+        choices=priority_choices, default='Middle')
+
+    status_choices = (
+        ('Approved', 'Подтверждено'),
+        ('Not Approved', 'Не подтверждено'),
+    )
+    status = models.CharField(max_length=100, \
+        choices=status_choices, default='Not Approved')
 
     def __str__(self):
         return self.id
