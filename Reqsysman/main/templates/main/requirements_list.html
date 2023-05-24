@@ -1,0 +1,33 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+  <h1>Список требований</h1>
+  <table class="requirements-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Описание</th>
+        <th>Тип требования</th>
+        <th>Приоритет</th>
+        <th>Статус</th>
+      </tr>
+
+
+    </thead>
+    <tbody>
+      {% for requirement in requirements %}
+        <tr>
+          <td>{{ requirement.id }}</td>
+          <td>{{ requirement.description }}</td>
+          <td>{{ requirement.type }}</td>
+          <td>{{ requirement.priority }}</td>
+          <td>{{ requirement.status }}</td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="5">Нет требований.</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

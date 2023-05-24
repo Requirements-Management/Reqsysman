@@ -1,33 +1,86 @@
+import json
+
 from django.shortcuts import render
 from rest_framework import viewsets
 from .models import *
 from .serializers import RequirementSerializer
 from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
-
+from django.shortcuts import render, redirect
+from .forms import *
+from django.http import HttpResponse
 
 def index(request):
     return render(request, 'main/index.html')
 
-
 def Reqsysman(request):
-    return render(request, 'main/Reqsysman.html' )
+    return render(request, 'main/Reqsysman.html')
 
 
 def github(request):
     return render(request, 'main/github.html' )
 
 
-
-def requirement_list_view(request):
+def requirements_list(request):
     requirements = Requirement.objects.all()
+    print(requirements)
+    context = {'requirements': requirements}
+    return render(request, 'main/requirements_list.html', context)
 
-    # Логика для фильтрации и сортировки requirements
-
-    return render(request, 'requirement_list.html', {'requirements': requirements})
-
+# def admin(request):
+#     return render(request, 'main/admin.html' )
 
 
+# def requirement_list_view(request):
+#     requirements = Requirement.objects.all()
+#
+#     # Логика для фильтрации и сортировки requirements
+#
+#     return render(request, 'requirement_list.html', {'requirements': requirements})
+#
+#
+# def requirement_detail_view(request, requirement_id):
+#     requirement = get_object_or_404(Requirement, pk=requirement_id)
+#
+#     # Логика для отображения связанных требований
+#
+#     return render(request, 'requirement_detail.html', {'requirement': requirement})
+
+
+# def add_requirement(request):
+#     if request.method == 'POST':
+#         form = RequirementForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('requirements_list')
+#     else:
+#         form = RequirementForm()
+#     return render(request, 'add_requirement.html', {'form': form})
+
+
+def add_requirement(request):
+    if request.method == 'POST':
+        form = RequirementForm(request.POST)
+        if form.is_valid():
+            requirement = form.save(commit=False)
+            requirement.save()
+            # Преобразование в JSON
+            data = {
+                'id': requirement.id,
+                'description': requirement.description,
+                'type': requirement.type,
+                'priority': requirement.priority,
+                'status': requirement.status
+            }
+            json_data = json.dumps(data, indent=4)
+            # Запись в файл
+            with open('requirements.json', 'a') as f:
+                f.write(json_data)
+                f.write('\n')
+            return HttpResponse('Требование успешно добавлено!')
+    else:
+        form = RequirementForm()
+    return render(request, 'add_requirement.html', {'form': form})
 
 class RequirementViewSet(viewsets.ModelViewSet):
     queryset = Requirement.objects.all()

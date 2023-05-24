@@ -14,9 +14,10 @@ class Requirement(models.Model):
     id = models.CharField(max_length=50, primary_key=True)
     description = models.TextField()
     type = models.ForeignKey(RequirementType, on_delete=models.CASCADE)
+    #type = 'Функциональные требования'
     priority = models.CharField(max_length=50)
     status = models.CharField(max_length=50)
-    version = models.CharField(max_length=100)
+    #version = models.CharField(max_length=100)
 
     def __str__(self):
         return self.id
