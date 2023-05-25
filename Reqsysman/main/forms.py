@@ -11,21 +11,47 @@ class MyForm(forms.Form):
 # END TEST CODE
 
 
-class RequirementForm(forms.ModelForm):
-    class Meta:
-        model = Requirement
-        fields = ['id', 'description', 'type', 'priority', 'status']
-        labels = {
-            'id': 'Идентификатор',
-            'description': 'Описание',
-            'type': 'Тип',
-            'priority': 'Приоритет',
-            'status': 'Статус',
-        }
+class RequirementForm(forms.Form):
+    id = forms.CharField(max_length=50, required=True)
 
-    def __init__(self, *args, **kwargs):
+    description = forms.CharField(widget=forms.Textarea, required=True)
+    #type = forms.
+    #type = forms.ForeignKey(RequirementType, \
+    #    on_delete=models.CASCADE)
+
+    priority_choices = (
+        ('Low', 'Низкий'),
+        ('Middle', 'Средний'),
+        ('High', 'Высокий'),
+    )
+    priority = forms.ChoiceField(choices=priority_choices, required=True, initial='Middle')
+
+    status_choices = (
+        ('Approved', 'Подтверждено'),
+        ('Not Approved', 'Не подтверждено'),
+    )
+    status = forms.ChoiceField(choices=status_choices, required=True, initial='Not Approved')
+
+    def __init__(self, types, *args, **kwargs):
         super(RequirementForm, self).__init__(*args, **kwargs)
-        self.fields['type'].empty_label = 'Не выбрано'
+        self.fields['type'] = forms.ChoiceField(choices=types)
+
+    field_order=['id', 'description', 'type', 'priority', 'status']
+
+    # class Meta:
+    #     model = Requirement
+    #     fields = ['id', 'description', 'type', 'priority', 'status']
+    #     labels = {
+    #         'id': 'Идентификатор',
+    #         'description': 'Описание',
+    #         'type': 'Тип',
+    #         'priority': 'Приоритет',
+    #         'status': 'Статус',
+    #     }
+
+    # def __init__(self, *args, **kwargs):
+    #     super(RequirementForm, self).__init__(*args, **kwargs)
+    #     self.fields['type'].empty_label = 'Не выбрано'
 
 
 # def requirement_create(request):
