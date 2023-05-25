@@ -1,7 +1,8 @@
 import json
 
 from django.shortcuts import render
-from Reqsysman.main.adapters.api_relationship_adapter import ApiRelationShipsAdapter
+from .adapters.api_relationship_adapter import ApiRelationShipsAdapter
+from .adapters.api_requirements_adapter import ApiRequirementsAdapter
 from rest_framework import viewsets
 from .models import *
 from .serializers import RequirementSerializer
