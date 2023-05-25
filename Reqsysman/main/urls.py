@@ -14,9 +14,8 @@ urlpatterns = [
     path('', views.index),
     path('admin/', admin.site.urls),
     path('github/', views.github),
-    path('Reqsysman/', views.RequirementController.get_requirements, name='requirements'),
-    # path('new_requirement/', views.RequirementController.create_requirement, name='new_requirement'),
-    # path('new_requirement/', views.new_requirement),
+    path('Reqsysman/', views.RequirementView.requirements, name='requirements'),
+    path('new_requirement/', views.RequirementView.new_requirement, name='new_requirement'),
     path('test/', views.test, name='test'),
 
     # path('', view.index),

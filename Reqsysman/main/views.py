@@ -74,10 +74,9 @@ class RequirementController:
         requirements = RequirementController.adapter.get_all_requirements()
 
         # Возврат ответа со списком объектов требований
-        return render(request, 'main/structured/requirements.html', {'requirements': requirements})
-        # return JsonResponse({'requirements': requirements})
-
-
+        return {
+            'requirements': requirements,
+        }
 
 
 
@@ -220,6 +219,14 @@ def test(request):
 
 def index(request):
     return render(request, 'main/structured/index.html')
+
+
+class RequirementView:
+    @staticmethod
+    def requirements(request):
+        requirements = RequirementController.get_requirements(request)
+        return render(request, 'main/structured/requirements.html', requirements)
+
 
 def requirements(request):
     requirements = Requirement.objects.all()
