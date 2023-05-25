@@ -3,6 +3,14 @@ from .models import Requirement
 from django.shortcuts import render, redirect
 
 
+# START TEST CODE
+class MyForm(forms.Form):
+    name = forms.CharField(max_length=100)
+    email = forms.EmailField()
+    message = forms.CharField(widget=forms.Textarea)
+# END TEST CODE
+
+
 class RequirementForm(forms.ModelForm):
     class Meta:
         model = Requirement

@@ -11,6 +11,23 @@ from .forms import *
 from django.http import HttpResponse
 
 
+
+def test(request):
+    if request.method == 'POST':
+        form = MyForm(request.POST)
+        if form.is_valid():
+            # Обработка валидных данных формы
+            name = form.cleaned_data['name']
+            email = form.cleaned_data['email']
+            message = form.cleaned_data['message']
+            # Дополнительные действия
+            print(f'name: {name}')
+            print(f'email: {email}')
+            print(f'message: {message}')
+    else:
+        form = MyForm()
+    return render(request, 'main/structured/test.html', {'form': form})
+
 def index(request):
     return render(request, 'main/structured/index.html')
 

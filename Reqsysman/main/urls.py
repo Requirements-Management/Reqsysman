@@ -16,6 +16,7 @@ urlpatterns = [
     path('github/', views.github),
     path('Reqsysman/', views.requirements),
     path('new_requirement/', views.new_requirement),
+    path('test/', views.test, name='test'),
 
     # path('', view.index),
 
