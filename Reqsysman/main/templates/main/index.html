@@ -53,11 +53,19 @@
         <p> </p>
     </ul>
     <!-- GitHub Connection Button -->
-    <button class="github-button"
-            onclick="window.location.href='https://github.com/login/oauth/authorize?client_id=Iv1.c141944317b66a8a&scope=user'">
+    <button class="github-button" onclick="redirectToGitHub()">
         <i class="fab fa-github github-logo"></i>
-        Подключиться к GitHub
+        Подключиться к GitHub!
     </button>
+    
+    <script>
+    function redirectToGitHub() {
+        window.location.href = "{% url 'github_login' %}";
+    }
+    </script>
+    
+
+    <a href="{% url 'github_login' %}">Авторизация через GitHub</a>
 
 </div>
 </body>

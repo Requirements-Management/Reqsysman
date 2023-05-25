@@ -23,5 +23,15 @@
         <i class="fab fa-github github-logo"></i>
         Подключиться к GitHub
     </button>
+
+    {% load socialaccount %}
+
+    {% if user.is_authenticated %}
+    <p>Welcome {{ user.username }} !!!</p>
+    {% else %}
+    <a href="{% provider_login_url 'github' %}">Sign Up</a>
+    {% endif %}
+
+    <a href="{% url 'github_login' %}">Авторизация через GitHub</a>
   </div>
 {% endblock %}

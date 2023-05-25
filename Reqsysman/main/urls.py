@@ -9,6 +9,7 @@ from .views import requirements_list
 router = routers.DefaultRouter()
 router.register(r'requirements', RequirementViewSet)
 app_name = 'main'
+from allauth.account import views as account_views
 
 urlpatterns = [
     path('', views.index),
@@ -19,6 +20,10 @@ urlpatterns = [
     path('Reqsysman/', views.RequirementView.requirements, name='requirements'),
     path('new_requirement/', views.RequirementView.new_requirement, name='new_requirement'),
     path('test/', views.test, name='test'),
+    # path('accounts/github/login/', views.github_login, name='github_login'),
+    # path('accounts/social/login/', account_views.LoginView.as_view(), name='socialaccount_login'),
+    
+    
 
 
     # path('', view.index),

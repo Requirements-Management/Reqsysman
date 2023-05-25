@@ -214,7 +214,17 @@ from allauth.socialaccount.models import SocialToken
 
 def display_repository_files(request):
     # Получение токена OAuth пользователя
-    social_token = SocialToken.objects.get(account__user=request.user, account__provider='github')
+    from django.contrib.auth.models import User
+
+    user = User.objects.get(username='Adefful')
+    print(SocialToken.objects)
+    social_token = SocialToken.objects.filter(account__user=user, account__provider='github').first()
+
+    if social_token:
+        print("SocialToken exists")
+    else:
+        print("SocialToken does not exist")
+    #social_token = SocialToken.objects.get(account__user=request.user, account__provider='github')
     oauth_token = social_token.token
 
     # Создание объекта Github

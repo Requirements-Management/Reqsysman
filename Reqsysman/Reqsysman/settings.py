@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'allauth',
     'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.github',
 
 ]
 
@@ -57,11 +59,11 @@ SOCIALACCOUNT_PROVIDERS = {
             'secret': '3d534df0ea293e3994de083d0b001b0a69237663',
             'key': ''
         },
-        'SCOPE': ['read:user', 'repo'] 
+        'SCOPE': ['read:user', 'repo'] ,
     }
 }
 
-SOCIALACCOUNT_ADAPTER = 'path.to.adapter.LocalhostSocialAccountAdapter'
+#SOCIALACCOUNT_ADAPTER = 'path.to.adapter.LocalhostSocialAccountAdapter'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -158,3 +160,11 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+
+    "django.core.context_processors.request",
+    
+    "allauth.account.context_processors.account",
+    "allauth.socialaccount.context_processors.socialaccount",
+)

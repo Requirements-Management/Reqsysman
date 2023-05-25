@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Список файлов</title>
+</head>
+<body>
+    <h1>Список файлов:</h1>
+    <ul>
+        {% for file_path in file_paths %}
+            <li>{{ file_path }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
