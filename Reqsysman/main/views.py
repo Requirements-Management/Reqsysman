@@ -1,6 +1,7 @@
 import json
 
 from django.shortcuts import render
+from Reqsysman.main.adapters.api_relationship_adapter import ApiRelationShipsAdapter
 from rest_framework import viewsets
 from .models import *
 from .serializers import RequirementSerializer
@@ -137,56 +138,63 @@ class RequirementViewSet(viewsets.ModelViewSet):
 
 
 class RequirementController:
+    adapter = ApiRequirementsAdapter()
+
+    @staticmethod
     def create_requirement(request):
         # Получение данных из запроса
         type = request.POST.get('type')
         description = request.POST.get('description')
 
-        # Создание нового объекта требования
-        requirement = Requirement(type=type, description=description)
-        requirement.save()
+        # Создание нового требования через API адаптер
+        new_requirement = Requirement(type=type, description=description)
+        created_requirement = RequirementController.adapter.create_requirement(new_requirement)
 
-        # Возврат ответа с созданным объектом требования в JSON формате
-        return JsonResponse({'id': requirement.id, 'type': requirement.type, 'description': requirement.description})
+        # Возврат ответа с созданным объектом требования
+        return JsonResponse(created_requirement)
 
+    @staticmethod
     def update_requirement(request, requirement_id):
-        # Получение объекта требования по его идентификатору
-        requirement = get_object_or_404(Requirement, pk=requirement_id)
+        # Получение данных из запроса
+        type = request.POST.get('type')
+        description = request.POST.get('description')
+
+        # Получение существующего требования через API адаптер
+        existing_requirement = RequirementController.adapter.get_requirement_by_id(requirement_id)
 
         # Обновление данных требования
-        requirement.type = request.POST.get('type')
-        requirement.description = request.POST.get('description')
-        requirement.save()
+        existing_requirement['type'] = type
+        existing_requirement['description'] = description
 
-        # Возврат ответа с обновленным объектом требования в JSON формате
-        return JsonResponse({'id': requirement.id, 'type': requirement.type, 'description': requirement.description})
+        # Обновление требования через API адаптер
+        updated_requirement = RequirementController.adapter.update_requirement(requirement_id, existing_requirement)
 
+        # Возврат ответа с обновленным объектом требования
+        return JsonResponse(updated_requirement)
+
+    @staticmethod
     def delete_requirement(request, requirement_id):
-        # Получение объекта требования по его идентификатору и удаление его из базы данных
-        requirement = get_object_or_404(Requirement, pk=requirement_id)
-        requirement.delete()
+        # Удаление требования через API адаптер
+        RequirementController.adapter.delete_requirement(requirement_id)
 
         # Возврат ответа с сообщением об успешном удалении
         return JsonResponse({'message': 'Requirement deleted successfully'})
 
+    @staticmethod
     def get_requirement(request, requirement_id):
-        # Получение объекта требования по его идентификатору
-        requirement = get_object_or_404(Requirement, pk=requirement_id)
+        # Получение требования через API адаптер
+        requirement = RequirementController.adapter.get_requirement_by_id(requirement_id)
 
-        # Возврат ответа с объектом требования в JSON формате
-        return JsonResponse({'id': requirement.id, 'type': requirement.type, 'description': requirement.description})
+        # Возврат ответа с объектом требования
+        return JsonResponse(requirement)
 
+    @staticmethod
     def get_requirements(request):
-        # Получение всех объектов требований из базы данных
-        requirements = Requirement.objects.all()
+        # Получение всех требований через API адаптер
+        requirements = RequirementController.adapter.get_all_requirements()
 
-        # Создание списка объектов требований в формате JSON
-        requirements_list = []
-        for requirement in requirements:
-            requirements_list.append({'id': requirement.id, 'type': requirement.type, 'description': requirement.description})
-
-        # Возврат ответа со списком объектов требований в JSON формате
-        return JsonResponse({'requirements': requirements_list})
+        # Возврат ответа со списком объектов требований
+        return JsonResponse({'requirements': requirements})
 
 
 
@@ -237,4 +245,76 @@ class RequirementTypeController:
 
         # Возврат ответа об успешном удалении объекта типа требований
         return JsonResponse({'message': 'Requirement type has been deleted successfully.'})
+    
+    
+class RelationshipController:
+    adapter = ApiRelationShipsAdapter()
 
+    @staticmethod
+    def create_relationship(request):
+        # Получение данных из запроса
+        source_requirement = request.POST.get('source_requirement')
+        target_requirement = request.POST.get('target_requirement')
+        relationship_type = request.POST.get('relationship_type')
+        branch = request.POST.get('branch')
+        commit_hash = request.POST.get('commit_hash')
+
+        # Создание связи между требованиями через адаптер
+        response = RelationshipController.adapter.create_relationship(source_requirement, target_requirement,
+                                                                     relationship_type, branch, commit_hash)
+
+        # Возврат ответа от адаптера в формате JSON
+        return JsonResponse(response)
+
+    @staticmethod
+    def update_relationship(request, relationship_id):
+        # Получение данных из запроса
+        source_requirement = request.POST.get('source_requirement')
+        target_requirement = request.POST.get('target_requirement')
+        relationship_type = request.POST.get('relationship_type')
+        branch = request.POST.get('branch')
+        new_commit_hash = request.POST.get('new_commit_hash')
+
+        # Обновление связи между требованиями через адаптер
+        response = RelationshipController.adapter.update_relationship(relationship_id, source_requirement,
+                                                                      target_requirement, relationship_type,
+                                                                      branch, new_commit_hash)
+
+        # Возврат ответа от адаптера в формате JSON
+        return JsonResponse(response)
+
+    @staticmethod
+    def delete_relationship(request, relationship_id):
+        # Получение данных из запроса
+        branch = request.POST.get('branch')
+        commit_hash = request.POST.get('commit_hash')
+
+        # Удаление связи между требованиями через адаптер
+        response = RelationshipController.adapter.delete_relationship(relationship_id, branch, commit_hash)
+
+        # Возврат ответа от адаптера в формате JSON
+        return JsonResponse(response)
+
+    @staticmethod
+    def get_relationship(request, relationship_id):
+        # Получение данных из запроса
+        branch = request.GET.get('branch')
+        commit_hash = request.GET.get('commit_hash')
+
+        # Получение информации о связи между требованиями через адаптер
+        response = RelationshipController.adapter.get_relationship(relationship_id, branch, commit_hash)
+
+        # Возврат ответа от адаптера в формате JSON
+        return JsonResponse(response)
+
+    @staticmethod
+    def get_relationships(request):
+        # Получение данных из запроса
+        branch = request.GET.get('branch')
+        commit_hash = request.GET.get('commit_hash')
+
+        # Получение связей между требованиями через адаптер
+        response = RelationshipController.adapter.get_relationships(branch, commit_hash)
+
+        # Возврат ответа от адаптера в формате JSON
+        return JsonResponse(response)
