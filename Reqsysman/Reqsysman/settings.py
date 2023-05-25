@@ -30,6 +30,13 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+SOCIAL_AUTH_GITHUB_KEY = 'your_github_client_id'
+SOCIAL_AUTH_GITHUB_SECRET = 'your_github_client_secret'
+
+SOCIAL_AUTH_REDIRECT_URI = 'http://127.0.0.1:8000/new_requirement/callback'
+
+
+
 INSTALLED_APPS = [
     'main',
     'django.contrib.admin',
@@ -74,6 +81,8 @@ WSGI_APPLICATION = 'Reqsysman.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
+
+SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
 
 DATABASES = {
     'default': {

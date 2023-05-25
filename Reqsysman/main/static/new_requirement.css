@@ -1,0 +1,87 @@
+.new-requirement_form-wrapper {
+  max-width: 500px;
+  margin: 0 auto 100px;
+  padding: 0 18px;
+}
+
+.new-requirement_form {
+  border: 1px solid rgb(184, 109, 245);
+  border-radius: 6px;
+  padding: 35px;
+  display: flex;
+  flex-direction: column;
+}
+
+.new-requirement_form > p {
+  margin: 0 0 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.new-requirement_form > p > label {
+  font-size: 14px;
+  color: #222;
+}
+
+.new-requirement_form > p > textarea,
+.new-requirement_form > p > input {
+  height: 40px;
+  /* should be 16px+ because of the ios devices */
+  font-size: 16px;
+  border-radius: 8px;
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  padding: 0 17px;
+  outline: 0;
+  transition: border .2s ease-in-out;
+}
+
+.new-requirement_form > p > textarea {
+  padding: 10px 17px;
+  height: auto;
+}
+
+.new-requirement_form > p > textarea:hover,
+.new-requirement_form > p > input:hover {
+  border-color: #dbdbdb;
+}
+
+.new-requirement_form > p > textarea:focus,
+.new-requirement_form > p > input:focus {
+  border-color: #999;
+}
+
+.new-requirement_add-button {
+  margin-top: 35px;
+  display: block;
+  padding: 0;
+  height: 58px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: 0;
+  background: rgb(117, 90, 240);
+  font-size: 18px;
+  border-radius: 6px;
+  margin-bottom: 30px;
+  transition: all .2s ease-in-out;
+  cursor: pointer;
+}
+
+.new-requirement_add-button:hover {
+  transform: scale(1.1);
+}
+
+.errorlist {
+  color: rgb(255, 93, 120);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nice-select:not(.open) {
+  text-overflow: ellipsis;
+  overflow: hidden;
+}

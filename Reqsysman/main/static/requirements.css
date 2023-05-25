@@ -1,0 +1,67 @@
+.requirements_wrapper {
+  margin: 0 auto 50px;
+  padding: 0 20px;
+  max-width: 1000px;
+}
+
+.requirements_add-btn {
+  display: block;
+  width: 48px;
+  height: 48px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: 0;
+  background: rgb(117, 90, 240);
+  font-size: 40px;
+  border-radius: 6px;
+  margin-bottom: 30px;
+  transition: all .2s ease-in-out;
+}
+
+.requirements_add-btn:hover {
+  transform: scale(1.1);
+}
+
+.requirements_list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.requirements_card {
+  border: 1px solid rgb(117, 90, 240);
+  border-radius: 6px;
+  padding: 15px 18px;
+}
+
+.requirements_card.Low {
+  background: rgba(0, 255, 119, 0.2);
+}
+
+.requirements_card.Medium {
+  background: rgb(234, 255, 0, 0.2);
+}
+
+.requirements_card.High {
+  background: rgba(255, 166, 0, 0.2);
+}
+
+.requirements_req-id-approved {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.requirements_req-type {
+  margin-top: 15px;
+  color: gray;
+  font-size: 13px;
+}
+
+.requirements_req-description {
+  margin-top: 15px;
+}

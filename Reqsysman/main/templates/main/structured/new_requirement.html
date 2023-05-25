@@ -1,0 +1,21 @@
+{% extends 'main/structured/base.html' %}
+
+{% block extra_head %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css">
+<!-- Should not be before nice select css ! -->
+<link rel="stylesheet" href="/static/new_requirement.css">
+{% endblock %}
+
+{% block content %}
+  <h1 class="default-h1">Новое требование</h1>
+  <div class="new-requirement_form-wrapper">
+    <form method="post" class="new-requirement_form">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="new-requirement_add-button">Добавить</button>
+    </form>
+  </div>
+  <script src="/static/new_requirement.js"></script>
+{% endblock %}
