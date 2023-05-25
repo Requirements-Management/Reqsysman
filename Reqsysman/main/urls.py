@@ -16,6 +16,9 @@ urlpatterns = [
     path('github/', views.github),
     path('Reqsysman/', views.requirements),
     path('new_requirement/', views.new_requirement),
+    path('accounts/', include('allauth.urls')),
+    path('repository/files/', views.display_repository_files, name='repository_files'),
+
 
     # path('', view.index),
 

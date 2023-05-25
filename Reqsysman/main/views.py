@@ -301,3 +301,32 @@ class RelationshipController:
 
         # Возврат ответа от адаптера в формате JSON
         return JsonResponse(response)
+
+
+from django.shortcuts import render
+from github import Github
+from allauth.socialaccount.models import SocialToken
+
+def display_repository_files(request):
+    # Получение токена OAuth пользователя
+    social_token = SocialToken.objects.get(account__user=request.user, account__provider='github')
+    oauth_token = social_token.token
+
+    # Создание объекта Github
+    g = Github(oauth_token)
+
+    # Получение репозитория
+    repo = g.get_repo('Requirements-Management/Reqsysman')  # Замените 'owner/repository' на владельца и название вашего репозитория
+
+    # Получение списка файлов в корневой директории репозитория
+    files = repo.get_contents("")
+
+    # Формирование списка путей файлов
+    file_paths = [file.path for file in files]
+
+    # Передача списка файлов в шаблон
+    context = {
+        'file_paths': file_paths
+    }
+
+    return render(request, 'repository_files.html', context)

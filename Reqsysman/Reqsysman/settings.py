@@ -38,7 +38,30 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'allauth',
+    'allauth.account',
+
 ]
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+SITE_ID = 1
+
+SOCIALACCOUNT_PROVIDERS = {
+    'github': {
+        'APP': {
+            'client_id': 'bc42d763f5257583b128',
+            'secret': '3d534df0ea293e3994de083d0b001b0a69237663',
+            'key': ''
+        },
+        'SCOPE': ['read:user', 'repo'] 
+    }
+}
+
+SOCIALACCOUNT_ADAPTER = 'path.to.adapter.LocalhostSocialAccountAdapter'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
